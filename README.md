@@ -42,7 +42,7 @@ Ensure you have [Node.js](https://nodejs.org/) and [npm](https://www.npmjs.com/)
    git clone git@github.com:SophiaOjegba/Bacteria-Cell-Growth.git
 2. **Navigate to the project directory:**
     ```bash
-    cd bacterial-cell-growth-simulation
+    cd Bacteria-Cell-Growth
 3. **Install dependencies:**
     ```bash
     npm install
