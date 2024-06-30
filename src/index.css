@@ -1,0 +1,226 @@
+:root {
+  /* Light Mode Colors */
+  --background-light: url('/images/jitto2.jpg');
+  --background-dark: url('/images/jitto4.jpg');
+  --text-light: #000;
+  --text-dark: #fff;
+  --cell-border-light: #ccc;
+  --cell-border-dark: #555;
+  --cell-bg-light: white;
+  --cell-bg-dark: #333;
+  --occupied-light: green;
+  --occupied-dark: limegreen;
+  --chart-bg-light: #f9f9f9;
+  --chart-bg-dark: #333;
+  --path-stroke-light: #007bff;
+  --path-stroke-dark: #00bfff;
+  --circle-fill-light: #007bff;
+  --circle-fill-dark: #00bfff;
+  --circle-stroke-light: #0056b3;
+  --circle-stroke-dark: #0056b3;
+  --text-color-light: #333;
+  --text-color-dark: #ccc;
+}
+
+[data-theme='light'] {
+  --background: var(--background-light);
+  --text-color: var(--text-light);
+  --cell-border: var(--cell-border-light);
+  --cell-bg: var(--cell-bg-light);
+  --occupied-color: var(--occupied-light);
+  --chart-bg: var(--chart-bg-light);
+  --path-stroke: var(--path-stroke-light);
+  --circle-fill: var(--circle-fill-light);
+  --circle-stroke: var(--circle-stroke-light);
+  --text-color-chart: var(--text-color-light);
+}
+
+[data-theme='dark'] {
+  --background: var(--background-dark);
+  --text-color: var(--text-dark);
+  --cell-border: var(--cell-border-dark);
+  --cell-bg: var(--cell-bg-dark);
+  --occupied-color: var(--occupied-dark);
+  --chart-bg: var(--chart-bg-dark);
+  --path-stroke: var(--path-stroke-dark);
+  --circle-fill: var(--circle-fill-dark);
+  --circle-stroke: var(--circle-stroke-dark);
+  --text-color-chart: var(--text-color-dark);
+}
+
+
+body {
+  background-image: var(--background); 
+  color: var(--text-color); 
+  background-size: cover;
+  background-position: center;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  position: relative; 
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  padding: 20px;
+  color: var(--text-color);
+  border-radius: 8px;
+}
+
+.app h1{
+    color: var(--text-color); 
+}
+
+.header {
+  display: flex;
+  justify-content: space-between; /* Adjusted for spacing */
+  align-items: center;
+  width: 100%; /* Ensure header takes full width */
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  margin: 0;
+  text-align: center;
+  flex: 1;
+  color: var(--text-color); /* Use CSS variable for text color */
+}
+
+.header .Home, .header .ThemeSwitcher {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  color: var(--text-color); /* Use CSS variable for text color */
+}
+
+.growthChart{
+  color: var(--text-color);
+}
+
+.header .Home {
+  background-color: #95acc9;
+}
+
+.header .ThemeSwitcher {
+  background-color: #95acc9;
+ margin-right: 10px;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  width: 100%;
+  flex: 1;
+  overflow: hidden;
+}
+
+.controls {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.controls label {
+  font-weight: bold; 
+  font-size: 1.2rem; 
+  margin-right: 8px; 
+  color: var(--text-color); 
+}
+
+.controls button, .controls select, .controls input {
+  margin-right: 10px;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid var(--cell-border);
+  border-radius: 4px;
+  outline: none;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  background-color: var(--cell-bg);
+  color: var(--text-color); 
+  cursor: pointer;
+}
+
+.controls button:focus, .controls select:focus, .controls input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 3px rgba(0, 123, 255, 0.5);
+}
+
+.grid {
+  display: grid;
+  gap: 5px;
+  margin-bottom: 20px;
+}
+
+.grid-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chart-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cell {
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--cell-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: var(--cell-bg);
+}
+
+.cell::before {
+  content: '';
+  width: 60%;
+  height: 60%;
+  background-color: transparent;
+  border-radius: 50%;
+  position: absolute;
+  border: 2px solid #333;
+}
+
+.cell.occupied::before {
+  background-color: var(--occupied-color);
+}
+
+.cell.selected {
+  outline: 2px solid red;
+}
+
+.cell.occupied::after {
+  content: '';
+  width: 40%;
+  height: 40%;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Style growth chart */
+svg {
+  border: 1px solid var(--cell-border);
+  width: 100%;
+  height: auto;
+}
