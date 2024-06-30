@@ -39,7 +39,7 @@ Ensure you have [Node.js](https://nodejs.org/) and [npm](https://www.npmjs.com/)
 1. **Clone the repository:**
 
    ```bash
-   git clone <repository-url>
+   git clone git@github.com:SophiaOjegba/Bacteria-Cell-Growth.git
 2. **Navigate to the project directory:**
     ```bash
     cd bacterial-cell-growth-simulation
